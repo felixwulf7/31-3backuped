@@ -94,7 +94,15 @@ export default function Header({ lang }: HeaderProps) {
                 : 'hover:bg-neutral-100 dark:hover:bg-neutral-800'
             }`}
           >
-            {lang === 'en' ? 'Play Games' : 'Spiele spielen'}
+            {t('playGames')}
+          </Link>
+
+          {/* Create Game Link */}
+          <Link
+            href={process.env.NEXT_PUBLIC_GAME_CREATOR_URL || 'http://localhost:5002'}
+            className="px-3 py-2 rounded-md text-sm font-medium transition-colors bg-gradient-to-r from-primary-600 to-primary-800 text-white hover:from-primary-700 hover:to-primary-900 shadow-md hover:shadow-lg"
+          >
+            Create Your Game
           </Link>
 
           <Link
@@ -193,7 +201,16 @@ export default function Header({ lang }: HeaderProps) {
             }`}
             onClick={() => setIsMenuOpen(false)}
           >
-            {lang === 'en' ? 'Play Games' : 'Spiele spielen'}
+            {t('playGames')}
+          </Link>
+
+          {/* Create Game Link */}
+          <Link
+            href={process.env.NEXT_PUBLIC_GAME_CREATOR_URL || 'http://localhost:5002'}
+            className="block px-3 py-2 rounded-md text-base font-medium bg-gradient-to-r from-primary-600 to-primary-800 text-white hover:from-primary-700 hover:to-primary-900 shadow-md hover:shadow-lg"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Create Your Game
           </Link>
 
           <Link
