@@ -1,0 +1,31 @@
+[Unit]
+Description=PsyGamingLab Flask API Gunicorn Service
+# This service should start after the network is available
+After=network.target
+
+[Service]
+# Replace 'your_user' and 'your_group' with the actual Linux user/group on your server
+User=your_user
+Group=your_group
+
+# Replace '/path/to/your/project/...' with the ABSOLUTE path to the Flask app directory on your server
+WorkingDirectory=/path/to/your/project/psygaminglab_essential_Template copy/psygaminglab_app_costum_games
+
+# Replace '/path/to/your/project/...' with the ABSOLUTE path to the Flask app's venv/bin directory
+Environment="PATH=/path/to/your/project/psygaminglab_essential_Template copy/psygaminglab_app_costum_games/venv_prod/bin"
+
+# Replace '/path/to/your/project/...' with the ABSOLUTE path to gunicorn inside the venv
+# Ensure the port (5002) matches what Nginx will proxy to
+ExecStart=/path/to/your/project/psygaminglab_essential_Template copy/psygaminglab_app_costum_games/venv_prod/bin/gunicorn --workers 3 --bind 127.0.0.1:5002 server:app
+
+# Restart the service if it fails
+Restart=always
+
+# Standard output and error logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=psygaminglab-api
+
+[Install]
+# Enable this service for multi-user runlevel (standard system boot)
+WantedBy=multi-user.target 

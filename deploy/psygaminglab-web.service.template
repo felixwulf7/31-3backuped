@@ -1,0 +1,33 @@
+[Unit]
+Description=PsyGamingLab Next.js Frontend Service
+# This service should start after the network is available
+After=network.target
+
+[Service]
+# Replace 'your_user' and 'your_group' with the actual Linux user/group on your server
+User=your_user
+Group=your_group
+
+# Replace '/path/to/your/project/...' with the ABSOLUTE path to the Next.js project root directory on your server
+WorkingDirectory=/path/to/your/project/psygaminglab_essential_Template copy
+
+# Set Node environment to production
+Environment="NODE_ENV=production"
+
+# Ensure npm is in the system PATH or provide the full path.
+# Find the path using 'which npm' on your server.
+# Example: ExecStart=/home/your_user/.nvm/versions/node/v18.18.0/bin/npm start
+# The default Next.js production server runs on port 3000
+ExecStart=/usr/bin/npm start
+
+# Restart the service if it fails
+Restart=always
+
+# Standard output and error logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=psygaminglab-web
+
+[Install]
+# Enable this service for multi-user runlevel (standard system boot)
+WantedBy=multi-user.target 
